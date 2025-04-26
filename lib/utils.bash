@@ -6,6 +6,8 @@ set -euo pipefail
 GH_REPO="https://github.com/databricks/cli"
 TOOL_NAME="databricks-cli"
 TOOL_TEST="databricks --version"
+OS_NAME=$(uname -s | tr '[:upper:]' '[:lower:]')
+OS_ARCH=$(uname -m | tr '[:upper:]' '[:lower:]')
 
 fail() {
 	echo -e "asdf-${TOOL_NAME}: $*"
@@ -42,7 +44,7 @@ download_release() {
 	filename="$2"
 
 	# DONE: Adapt the release URL convention for databricks-cli
-	url="$GH_REPO/archive/v${version}.tar.gz"
+	url="$GH_REPO/releases/download/v${version}/${filename}_${version}_${OS_NAME}_${OS_ARCH}.tar.gz"
 
 	echo "* Downloading $TOOL_NAME release $version..."
 	echo "* Download command: curl ${curl_opts[@]} -o $filename -C - $url"
