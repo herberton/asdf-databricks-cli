@@ -4,11 +4,11 @@ set -euo pipefail
 
 # DONE: Ensure this is the correct GitHub homepage where releases can be downloaded for databricks-cli.
 GH_REPO="https://github.com/databricks/cli"
-TOOL_NAME="databricks_cli"
+TOOL_NAME="databricks-cli"
 TOOL_TEST="databricks --version"
 
 fail() {
-	echo -e "asdf-$TOOL_NAME: $*"
+	echo -e "asdf-${TOOL_NAME}: $*"
 	exit 1
 }
 
