@@ -83,6 +83,7 @@ download_release() {
 
 	echo "* Downloading $TOOL_NAME release $version..."
 	curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
+	echo "* Downloadded file at: $(ls -lah $filename)"
 }
 
 install_version() {
