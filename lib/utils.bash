@@ -85,8 +85,7 @@ download_release() {
 	echo "* Download command: curl ${curl_opts[@]} -o $filename -C - $url"
 	curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
 }
-https://github.com/databricks/cli/releases/download/v0.249.0/databricks_cli_0.249.0_linux_arm64.tar.gz
-https://github.com/databricks/cli/releases/download/v0.249.0/databricks_cli_0.249.0_linux_x86_64.tar.gz
+
 install_version() {
 	local install_type="$1"
 	local version="$2"
