@@ -4,10 +4,45 @@ set -euo pipefail
 
 # DONE: Ensure this is the correct GitHub homepage where releases can be downloaded for databricks-cli.
 GH_REPO="https://github.com/databricks/cli"
-TOOL_NAME="databricks-cli"
+TOOL_NAME="databricks"
 TOOL_TEST="databricks --version"
-OS_NAME=$(uname -s | tr '[:upper:]' '[:lower:]')
-OS_ARCH=$(uname -m | tr '[:upper:]' '[:lower:]')
+
+# set OS_NAME
+case "$(uname -s | cut -d '-' -f 1)" in
+Linux)
+    OS_NAME="linux"
+    ;;
+Darwin)
+    OS_NAME="darwin"
+    ;;
+MINGW64_NT)
+    OS_NAME="windows"
+    ;;
+*)
+    echo "Unknown operating system: $(uname -s | cut -d '-' -f 1)"
+    exit 1
+    ;;
+esac
+
+# set OS_ARCH
+case "$(uname -m)" in
+i386)
+    OS_ARCH="386"
+    ;;
+x86_64)
+    OS_ARCH="amd64"
+    ;;
+arm)
+    OS_ARCH="arm"
+    ;;
+arm64|aarch64)
+    OS_ARCH="arm64"
+    ;;
+*)
+    echo "Unknown architecture: $(uname -m)"
+    exit 1
+    ;;
+esac
 
 fail() {
 	echo -e "asdf-${TOOL_NAME}: $*"
@@ -50,7 +85,8 @@ download_release() {
 	echo "* Download command: curl ${curl_opts[@]} -o $filename -C - $url"
 	curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
 }
-
+https://github.com/databricks/cli/releases/download/v0.249.0/databricks_cli_0.249.0_linux_arm64.tar.gz
+https://github.com/databricks/cli/releases/download/v0.249.0/databricks_cli_0.249.0_linux_x86_64.tar.gz
 install_version() {
 	local install_type="$1"
 	local version="$2"
