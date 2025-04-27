@@ -79,7 +79,7 @@ download_release() {
 	filename="$2"
 
 	# DONE: Adapt the release URL convention for databricks-cli
-	url="$GH_REPO/releases/download/v${version}/${TOOL_NAME/-/_}_${version}_${OS_NAME}_${OS_ARCH}.tar.gz"
+	url="$GH_REPO/releases/download/v${version}/${TOOL_NAME/-/_}_cli_${version}_${OS_NAME}_${OS_ARCH}.tar.gz"
 
 	echo "* Downloading $TOOL_NAME release $version..."
 	echo "* Download command: curl ${curl_opts[@]} -o $filename -C - $url"
