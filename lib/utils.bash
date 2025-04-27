@@ -19,7 +19,7 @@ MINGW64_NT)
     OS_NAME="windows"
     ;;
 *)
-    echo "Unknown operating system: $(uname -s | cut -d '-' -f 1)"
+    echo "* Unknown operating system: $(uname -s | cut -d '-' -f 1)"
     exit 1
     ;;
 esac
@@ -39,7 +39,7 @@ arm64|aarch64)
     OS_ARCH="arm64"
     ;;
 *)
-    echo "Unknown architecture: $(uname -m)"
+    echo "* Unknown architecture: $(uname -m)"
     exit 1
     ;;
 esac
